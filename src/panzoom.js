@@ -525,6 +525,13 @@
 					marginH += (container.height - height) / 2;
 					matrix[4] = Math.max(Math.min(matrix[4], marginW - left), -marginW - left - diffW);
 					matrix[5] = Math.max(Math.min(matrix[5], marginH - top), -marginH - top - diffH + dims.heightBorder);
+				} else if (contain === 'invert_center') {
+					diffW = width > container.width ? width - container.width : 0;
+					diffH = height > container.height ? height - container.height : 0;
+					marginW += (container.width - width) / 2;
+					marginH += (container.height - height) / 2;
+					matrix[4] = (width * Math.abs(scale) - container.width) >= 0 ? Math.max(Math.min(matrix[4], marginW - left), -marginW - left - diffW) : (width - container.width) / -2;
+					matrix[5] = (height * Math.abs(scale) - container.height) >= 0 ? Math.max(Math.min(matrix[5], marginH - top), - marginH - top - diffH + dims.heightBorder) : (height - container.height) /-2;
 				} else {
 					// marginW += dims.widthBorder / 2;
 					marginH += dims.heightBorder / 2;
